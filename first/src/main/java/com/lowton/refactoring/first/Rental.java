@@ -37,4 +37,15 @@ public class Rental {
         }
         return result;
     }
+
+    public int getFrequentRenterPoints() {
+        int frequentRenterPoints = 0;
+        // Начисление бонусных очков
+        frequentRenterPoints++;
+
+        // Бонус за двухдневный прокат новинки
+        if ((getMovie().getPriceCode() == Movie.NEW) && getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
+    }
 }

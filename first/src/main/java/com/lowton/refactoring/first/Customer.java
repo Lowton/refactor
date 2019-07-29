@@ -42,13 +42,6 @@ public class Customer {
     }
 
     private int getFrequentRenterPoints(Rental each) {
-        int frequentRenterPoints = 0;
-        // Начисление бонусных очков
-        frequentRenterPoints++;
-
-        // Бонус за двухдневный прокат новинки
-        if ((each.getMovie().getPriceCode() == Movie.NEW) && each.getDaysRented() > 1)
-            frequentRenterPoints++;
-        return frequentRenterPoints;
+        return each.getFrequentRenterPoints();
     }
 }
