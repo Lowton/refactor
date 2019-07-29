@@ -28,7 +28,7 @@ class CustomerTest {
         john.addRental(new Rental(cats, 2));
         alice.addRental(new Rental(dogs, 7));
 
-        Assertions.assertEquals(johnStaitment, john.staitment());
-        Assertions.assertEquals(aliceStaitment, alice.staitment());
+        Assertions.assertEquals(johnStaitment, john.statement());
+        Assertions.assertEquals(aliceStaitment, alice.statement());
     }
 }

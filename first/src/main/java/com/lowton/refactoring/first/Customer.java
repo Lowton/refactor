@@ -19,7 +19,7 @@ public class Customer {
         _rentals.addElement(arg);
     }
 
-    public String staitment() {
+    public String statement() {
         Enumeration rentals = _rentals.elements();
 
         String result = "Прокат " + getName() + "\n";
