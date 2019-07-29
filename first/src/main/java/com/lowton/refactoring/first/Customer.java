@@ -46,8 +46,8 @@ public class Customer {
         }
 
         // Добавление колонтитула
-        result += "<p> Сумма задолженности <em>" + getTotalCharge() + "</em></p>\n";
-        result += "<p> Вы заработали <em>" + getTotalFrequentRenterPoints() + "</em> бонусных очков.</p>";
+        result += "<p>Сумма задолженности <em>" + getTotalCharge() + "</em></p>\n";
+        result += "<p>Вы заработали <em>" + getTotalFrequentRenterPoints() + "</em> бонусных очков.</p>";
 
         return result;
     }
