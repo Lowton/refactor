@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Customer {
     private String _name;
-    private Vector _rentals = new Vector();
+    private Vector<Rental> _rentals = new Vector<>();
 
     public Customer(String _name) {
         this._name = _name;
@@ -20,43 +20,43 @@ public class Customer {
     }
 
     public String statement() {
-        Enumeration rentals = _rentals.elements();
+        Enumeration<Rental> rentals = _rentals.elements();
 
-        String result = "Прокат " + getName() + "\n";
+        StringBuilder result = new StringBuilder("Прокат " + getName() + "\n");
 
         while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
+            Rental each = rentals.nextElement();
             // Вывод результатов для каждого проката
-            result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
+            result.append("\t").append(each.getMovie().getTitle()).append("\t").append(each.getCharge()).append("\n");
         }
 
         // Добавление колонтитула
-        result += "Сумма задолженности: " + getTotalCharge() + "\n";
-        result += "Вы заработали " + getTotalFrequentRenterPoints() + " бонусных очков!\n";
-        return result;
+        result.append("Сумма задолженности: ").append(getTotalCharge()).append("\n");
+        result.append("Вы заработали ").append(getTotalFrequentRenterPoints()).append(" бонусных очков!\n");
+        return result.toString();
     }
 
     public String htmlStatement() {
-        Enumeration rentals = _rentals.elements();
-        String result = "<h1>Прокат <em>" + getName() + "</em></h1>";
+        Enumeration<Rental> rentals = _rentals.elements();
+        StringBuilder result = new StringBuilder("<h1>Прокат <em>" + getName() + "</em></h1>");
 
         while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += "<p>" + each.getMovie().getTitle() + ": " + each.getCharge() + "</p>\n";
+            Rental each = rentals.nextElement();
+            result.append("<p>").append(each.getMovie().getTitle()).append(": ").append(each.getCharge()).append("</p>\n");
         }
 
         // Добавление колонтитула
-        result += "<p>Сумма задолженности <em>" + getTotalCharge() + "</em></p>\n";
-        result += "<p>Вы заработали <em>" + getTotalFrequentRenterPoints() + "</em> бонусных очков.</p>";
+        result.append("<p>Сумма задолженности <em>").append(getTotalCharge()).append("</em></p>\n");
+        result.append("<p>Вы заработали <em>").append(getTotalFrequentRenterPoints()).append("</em> бонусных очков.</p>");
 
-        return result;
+        return result.toString();
     }
 
     private int getTotalFrequentRenterPoints() {
         int frequentRenterPoints = 0;
-        Enumeration rentals = _rentals.elements();
+        Enumeration<Rental> rentals = _rentals.elements();
         while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
+            Rental each = rentals.nextElement();
             frequentRenterPoints += each.getFrequentRenterPoints();
         }
         return frequentRenterPoints;
@@ -64,9 +64,9 @@ public class Customer {
 
     private double getTotalCharge() {
         double result = 0;
-        Enumeration rentals = _rentals.elements();
+        Enumeration<Rental> rentals = _rentals.elements();
         while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
+            Rental each = rentals.nextElement();
             result += each.getCharge();
         }
         return result;
