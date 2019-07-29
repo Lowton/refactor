@@ -18,17 +18,10 @@ public class Rental {
     }
 
     public double getCharge() {
-        return _movie.getCharge(this._daysRented);
+        return _movie.getCharge(_daysRented);
     }
 
     public int getFrequentRenterPoints() {
-        int frequentRenterPoints = 0;
-        // Начисление бонусных очков
-        frequentRenterPoints++;
-
-        // Бонус за двухдневный прокат новинки
-        if ((getMovie().getPriceCode() == Movie.NEW) && getDaysRented() > 1)
-            frequentRenterPoints++;
-        return frequentRenterPoints;
+        return _movie.getFrequentRenterPoints(_daysRented);
     }
 }
