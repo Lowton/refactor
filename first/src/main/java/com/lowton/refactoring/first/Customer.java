@@ -26,9 +26,7 @@ public class Customer {
         String result = "Прокат " + getName() + "\n";
 
         while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-            thisAmount = each.getCharge();
 
             // Начисление бонусных очков
             frequentRenterPoints++;
@@ -38,8 +36,8 @@ public class Customer {
                 frequentRenterPoints++;
 
             // Вывод результатов для каждого проката
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
 
         // Добавление колонтитула
