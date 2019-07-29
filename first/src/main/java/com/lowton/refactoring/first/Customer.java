@@ -27,12 +27,12 @@ public class Customer {
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
             // Вывод результатов для каждого проката
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
         }
 
         // Добавление колонтитула
-        result += "Сумма задолженности: " + String.valueOf(getTotalCharge()) + "\n";
-        result += "Вы заработали " + String.valueOf(getTotalFrequentRenterPoints()) + " бонусных очков!\n";
+        result += "Сумма задолженности: " + getTotalCharge() + "\n";
+        result += "Вы заработали " + getTotalFrequentRenterPoints() + " бонусных очков!\n";
         return result;
     }
 
