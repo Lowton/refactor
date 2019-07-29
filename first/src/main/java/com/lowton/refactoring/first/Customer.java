@@ -28,7 +28,7 @@ public class Customer {
         while (rentals.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-            thisAmount = amountFor(each);
+            thisAmount = each.getCharge();
 
             // Начисление бонусных очков
             frequentRenterPoints++;
@@ -47,9 +47,5 @@ public class Customer {
         result += "Сумма задолженности: " + String.valueOf(totalAmount) + "\n";
         result += "Вы заработали " + String.valueOf(frequentRenterPoints) + " бонусных очков!\n";
         return result;
-    }
-
-    private double amountFor(Rental aRental) {
-        return aRental.getCharge();
     }
 }
