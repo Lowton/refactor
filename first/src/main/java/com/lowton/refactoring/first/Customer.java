@@ -23,21 +23,30 @@ public class Customer {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
         Enumeration rentals = _rentals.elements();
+
         String result = "Прокат " + getName() + "\n";
 
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
             frequentRenterPoints += each.getFrequentRenterPoints();
-
             // Вывод результатов для каждого проката
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-            totalAmount += each.getCharge();
         }
 
         // Добавление колонтитула
 
-        result += "Сумма задолженности: " + String.valueOf(totalAmount) + "\n";
+        result += "Сумма задолженности: " + String.valueOf(getTotalCharge()) + "\n";
         result += "Вы заработали " + String.valueOf(frequentRenterPoints) + " бонусных очков!\n";
+        return result;
+    }
+
+    private double getTotalCharge() {
+        double result = 0;
+        Enumeration rentals = _rentals.elements();
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+            result += each.getCharge();
+        }
         return result;
     }
 }
