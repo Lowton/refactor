@@ -28,23 +28,7 @@ public class Customer {
         while (rentals.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-
-            // Определение суммы для каждой строки
-            switch (each.getMovie().getPriceCode()) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    break;
-                case Movie.NEW:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENSS:
-                    thisAmount += 1.5;
-                    if (each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    break;
-            }
+            thisAmount = amountFor(each);
 
             // Начисление бонусных очков
             frequentRenterPoints++;
@@ -63,5 +47,26 @@ public class Customer {
         result += "Сумма задолженности: " + String.valueOf(totalAmount) + "\n";
         result += "Вы заработали " + String.valueOf(frequentRenterPoints) + " бонусных очков!\n";
         return result;
+    }
+
+    private double amountFor(Rental each) {
+        double thisAmount = 0;
+        // Определение суммы для каждой строки
+        switch (each.getMovie().getPriceCode()) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (each.getDaysRented() > 2)
+                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                break;
+            case Movie.NEW:
+                thisAmount += each.getDaysRented() * 3;
+                break;
+            case Movie.CHILDRENSS:
+                thisAmount += 1.5;
+                if (each.getDaysRented() > 3)
+                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                break;
+        }
+        return thisAmount;
     }
 }
