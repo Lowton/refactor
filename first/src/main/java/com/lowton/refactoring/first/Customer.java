@@ -31,9 +31,24 @@ public class Customer {
         }
 
         // Добавление колонтитула
-
         result += "Сумма задолженности: " + String.valueOf(getTotalCharge()) + "\n";
         result += "Вы заработали " + String.valueOf(getTotalFrequentRenterPoints()) + " бонусных очков!\n";
+        return result;
+    }
+
+    public String htmlStatement() {
+        Enumeration rentals = _rentals.elements();
+        String result = "<h1>Прокат <em>" + getName() + "</em></h1>";
+
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+            result += "<p>" + each.getMovie().getTitle() + ": " + each.getCharge() + "</p>\n";
+        }
+
+        // Добавление колонтитула
+        result += "<p> Сумма задолженности <em>" + getTotalCharge() + "</em></p>\n";
+        result += "<p> Вы заработали <em>" + getTotalFrequentRenterPoints() + "</em> бонусных очков.</p>";
+
         return result;
     }
 
