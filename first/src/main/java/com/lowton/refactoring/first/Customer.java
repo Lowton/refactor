@@ -61,7 +61,7 @@ public class Customer {
         // Добавление колонтитула
 
         result += "Сумма задолженности: " + String.valueOf(totalAmount) + "\n";
-        result += "Вы заработали " + String.valueOf(frequentRenterPoints) + "бонусных очков!\n";
+        result += "Вы заработали " + String.valueOf(frequentRenterPoints) + " бонусных очков!\n";
         return result;
     }
 }
