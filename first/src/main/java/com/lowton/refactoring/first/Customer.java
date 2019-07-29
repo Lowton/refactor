@@ -27,13 +27,7 @@ public class Customer {
 
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-
-            // Начисление бонусных очков
-            frequentRenterPoints++;
-
-            // Бонус за двухдневный прокат новинки
-            if ((each.getMovie().getPriceCode() == Movie.NEW) && each.getDaysRented() > 1)
-                frequentRenterPoints++;
+            frequentRenterPoints += getFrequentRenterPoints(each);
 
             // Вывод результатов для каждого проката
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
@@ -45,5 +39,16 @@ public class Customer {
         result += "Сумма задолженности: " + String.valueOf(totalAmount) + "\n";
         result += "Вы заработали " + String.valueOf(frequentRenterPoints) + " бонусных очков!\n";
         return result;
+    }
+
+    private int getFrequentRenterPoints(Rental each) {
+        int frequentRenterPoints = 0;
+        // Начисление бонусных очков
+        frequentRenterPoints++;
+
+        // Бонус за двухдневный прокат новинки
+        if ((each.getMovie().getPriceCode() == Movie.NEW) && each.getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 }
